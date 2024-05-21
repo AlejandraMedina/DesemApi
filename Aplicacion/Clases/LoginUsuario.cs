@@ -12,7 +12,9 @@ namespace Aplicacion.Clases
         public IRepositorioUsuarios RepoUsuario { get; set; }
 
 
+#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public LoginUsuario(IRepositorioUsuarios repoUsuario)
+#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
 
             RepoUsuario = repoUsuario;
@@ -23,7 +25,9 @@ namespace Aplicacion.Clases
         UsuarioDTO ILoginUsuario.LoginUsuario(string mail, string Password)
         {
 
+#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             UsuarioDTO dto = null;
+#pragma warning restore CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             Usuario usu = RepoUsuario.Login(mail, Password);
 
 
@@ -37,7 +41,9 @@ namespace Aplicacion.Clases
                     Rol = usu.Rol
                 };
             }
+#pragma warning disable CS8603 // Posible tipo de valor devuelto de referencia nulo
             return dto;
+#pragma warning restore CS8603 // Posible tipo de valor devuelto de referencia nulo
 
         }
 
@@ -54,7 +60,9 @@ namespace Aplicacion.Clases
                     return item;
                 }
             }
+#pragma warning disable CS8603 // Posible tipo de valor devuelto de referencia nulo
             return null;
+#pragma warning restore CS8603 // Posible tipo de valor devuelto de referencia nulo
 
         }
 

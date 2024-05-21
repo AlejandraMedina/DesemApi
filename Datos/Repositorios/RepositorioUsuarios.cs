@@ -33,9 +33,11 @@ namespace Datos.Repositorios
 
         public Usuario Login(string mail, string password)
         {
+#pragma warning disable CS8603 // Posible tipo de valor devuelto de referencia nulo
             return Contexto.Usuarios
                     .Where(u => u.Email == mail && u.Contrasena == password)
                     .SingleOrDefault();
+#pragma warning restore CS8603 // Posible tipo de valor devuelto de referencia nulo
         }
 
         public void Remove(int id)
