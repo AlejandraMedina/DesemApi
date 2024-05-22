@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DesemApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] 
     [ApiController]
     public class EventosController : ControllerBase
     {
@@ -13,7 +14,7 @@ namespace DesemApi.Controllers
         //public TiposController(IAltaEvento cuAltaEvento)
         //{
         //    AltaEvento = cuAltaEvento;
-
+          
         //}
 
 

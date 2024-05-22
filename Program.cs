@@ -1,17 +1,15 @@
-using Aplicacion.Clases;
-using Aplicacion.Interfaces;
-using Datos.Repositorios;
 using DesemApi;
-using Dominio.InterfacesRepositorios;
-using static System.Net.Mime.MediaTypeNames;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Domino.EntidadesNegocio;
 using Microsoft.EntityFrameworkCore;
+using static System.Net.Mime.MediaTypeNames;
+using Datos;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
+using Datos.Repositorios;
+using Dominio.InterfacesRepositorios;
+using Aplicacion.Clases;
+using Aplicacion.Interfaces;
 
 
 
@@ -19,9 +17,7 @@ var configurationBuilder = new ConfigurationBuilder();
 configurationBuilder.AddJsonFile("appsettings.json", false, true);
 var configuration = configurationBuilder.Build();
 
-#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
 string strCon = configuration.GetConnectionString("MiConexion");
-#pragma warning restore CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DesemContext>(options => options.UseSqlServer(strCon));
 
@@ -82,8 +78,10 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapControllers();
-
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 
 app.Run();
